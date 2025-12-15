@@ -1,4 +1,6 @@
 .c-btn {
+  z-index: 0;
+  position: relative;
   width: 40px;
   height: 40px;
   padding: 8px;
@@ -15,15 +17,32 @@
   padding: 2vw;
   background-color: #666666;
 }
-.filter-btn .icon {
-  
+.filter-btn.c-btn {
+  z-index: 2
 }
 .portfolio-name {
+  z-index: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: solid 1px red;
+}
+.filter-screen {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40dvh;
+  background-color: rgba(48, 240, 157, 0.8);
+  opacity: 0;
+  transform: translate(-100%, -100%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.filter-screen.is-show {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 .main {
@@ -32,7 +51,7 @@
   width: 100%;
   height: 100dvh;
 }
-.screen {
+.main-screen {
   width: 100%;
   height: 40%;
   border: solid 1px orange;
