@@ -1,6 +1,6 @@
 .c-btn {
-  aspect-ratio: 1 / 1;
-  width: 48px;
+  width: 40px;
+  height: 40px;
   padding: 8px;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.4);
