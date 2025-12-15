@@ -1,12 +1,31 @@
-.hmb {
+.c-btn {
+  aspect-ratio: 1 / 1;
+  width: 48px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.header {
   z-index: 1;
   position: fixed;
-  top: 2vw;
-  left: 2vw;
-  aspect-ratio: 1 / 1;
-  width: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2vw;
+  background-color: #666666;
+}
+.filter-btn .icon {
+  
+}
+.portfolio-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: solid 1px red;
 }
+
 .main {
   z-index: 0;
   position: relative;
@@ -29,7 +48,34 @@
   border: solid 1px green;
 }
 .portfolio-item {
-  aspect-ratio: 1 / 0.5;
   width: 100%;
+  /* ↓ ｳｲﾝﾄﾞｳ幅375px:160px ~ ｳｲﾝﾄﾞｳ幅1025px:200px の範囲で変化 */
+  height: clamp(160px, calc(160px + (100vw - 375px) * (40 / 650)) , 200px);
   border: solid 1px black;
+}
+
+/**** ﾀﾌﾞﾚｯﾄ → ****/
+@media screen and (min-width: 600px) {
+  .portfolio-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/**** PC → ****/
+@media screen and (min-width: 1025px) {
+  .header {
+    width: 60%;
+  }
+  .main {
+    display: flex;
+  }
+  .screen {
+    width: 60%;
+    height: 100%;
+  }
+  .portfolio-list {
+    grid-template-columns: repeat(2, 1fr);
+    width: 40%;
+    height: 100%;
+  }
 }
