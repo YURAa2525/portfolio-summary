@@ -22,6 +22,9 @@ html {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.4);
 }
+.is-hide {
+  visibility: hidden;
+}
 
 .header {
   z-index: 1;
@@ -29,7 +32,6 @@ html {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 2vw;
   background-color: #666666;
 }
 .filter-btn.c-btn {
@@ -67,12 +69,15 @@ html {
   height: 100dvh;
 }
 .main-screen {
+  position: relative;
   overflow: hidden;
   width: 100%;
   height: 40%;
   border: solid 1px orange;
 }
 .pages {
+  z-index: 0;
+  position: relative;
   display: flex;
   width: 300%;
   height: 100%;
@@ -93,6 +98,66 @@ html {
   width: 100%;
   height: 100%;
   background-color: violet;
+}
+.page-control {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  gap: 4vw;
+  transform: translateX(-50%);
+}
+.pagenation {
+  display: flex;
+  gap: 2vw;
+}
+.pagenation__dot {
+  aspect-ratio: 1 / 1;
+  width: 0.5rem;
+  border-radius: 100%;
+  background-color: black;
+  opacity: 0.2;
+  transition: opacity 0.2s ease;
+}
+.pagenation__dot.is-vivid {
+  opacity: 0.5;
+}
+.next-arrow.c-btn {
+  height: 32px;
+}
+.next-arrow__inside {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.next-arrow__inside::before, .next-arrow__inside::after {
+  position: absolute;
+  top: 50%;
+  border-width: 2px;
+  border-color: black;
+  content: "";
+}
+.next-arrow__inside::before {
+  left: 0;
+  width: 100%;
+  border-style: solid none none none;
+  transform: translateY(-50%);
+}
+.next-arrow__inside::after {
+  aspect-ratio: 1 / 1;
+  width: 50%;
+  border-style: solid none none solid;
+}
+.next-arrow:nth-of-type(1) .next-arrow__inside::after {
+  left: 1px;
+  transform: translateY(-50%) rotate(-45deg);
+}
+.next-arrow:nth-of-type(2) .next-arrow__inside::after {
+  right: 1px;
+  transform: translateY(-50%) rotate(-225deg);
 }
 
 .portfolio-list {
@@ -148,6 +213,9 @@ html {
 
 /**** ﾀﾌﾞﾚｯﾄ → ****/
 @media screen and (min-width: 600px) {
+  .header {
+    padding: 1rem;
+  }
   .portfolio-list {
     grid-template-columns: repeat(3, 1fr);
   }
