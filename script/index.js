@@ -6,8 +6,8 @@ $(function() {
 function filterBtn() {
   let isWait = false;
 
-  $(".header").on("click mouseenter", ".js-filter-btn", function(e) {
-    if ((e.type == "mouseenter") && (e.pointerType != "mouse")) return;
+  $(".header").on("click pointerenter", ".js-filter-btn", function(e) {
+    if ((e.type == "pointerenter") && (e.pointerType != "mouse")) return;
 
     console.log(e.pointerType);
 
