@@ -6,7 +6,7 @@ $(function() {
 function filterBtn() {
   let isWait = false;
 
-  $(".header").on("click mouseenter", ".js-filter-btn", function() {
+  $(".header").on("click mouseenter", ".js-filter-btn", function(e) {
     if (isWait) return;
     isWait = true;
     
@@ -15,5 +15,8 @@ function filterBtn() {
     setTimeout(() => {
       isWait = false;
     }, 200);
+
+
+    $(".debug-console").text(e.type);
   });
 }
