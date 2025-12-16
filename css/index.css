@@ -247,6 +247,30 @@ html {
   }
 }
 
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .header {
+    width: 60%;
+  }
+  .filter-screen {
+    width: 60%;
+    height: 50dvh;
+  }
+  .main {
+    display: flex;
+  }
+  .main-screen {
+    width: 60%;
+    height: 100%;
+  }
+  .portfolio-list {
+    grid-template-columns: repeat(2, 1fr);
+    width: 40%;
+    height: 100%;
+  }
+}
+
+
 /**** PC → ****/
 @media screen and (min-width: 1025px) {
   .header {
