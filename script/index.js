@@ -43,6 +43,7 @@ function slidePage() {
   let startX = 0;
   $(".main-screen").on("touchstart", function(e) {
     startX = e.touchs[0].clientX;
+    $(".debug-console").text(e.type);
   });
 
   $(".main-screen").on("touchmove", function(e) {
@@ -56,6 +57,8 @@ function slidePage() {
 
     const moveX = $(".js-slide-page").width() * showPageIx * -1;
     $(".js-pages").css("transform", `translateX(${moveX}px)`);
+
+    $(".debug-console").text(e.type);
   });
 }
 
