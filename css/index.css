@@ -1,4 +1,5 @@
 .debug-console {
+  z-index: 10;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -81,7 +82,7 @@ html {
 .top-page {
   width: 100%;
   height: 100%;
-  background-color: blueviolet;
+  background-color: goldenrod;
 }
 .idea-page {
   width: 100%;

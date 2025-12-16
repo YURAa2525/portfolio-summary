@@ -18,6 +18,8 @@ function filterBtn() {
     setTimeout(() => {
       isWait = false;
     }, 200);
+
+    $(".debug-console").text(e.type);
   });
 }
 
