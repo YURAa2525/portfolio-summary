@@ -27,6 +27,7 @@ function filterBtn() {
 function slidePage() {
   const maxPageIx  = $(".js-slide-page").length - 1;
   let   showPageIx = 0;
+  let isWait = false;
 
   // $(".main-screen").on("wheel", function(e) {
   //   if (e.originalEvent.deltaY != 0) return;
@@ -44,12 +45,16 @@ function slidePage() {
 
   let startX = 0;
   $(".main-screen").on("touchstart", function(e) {
-    startX = e.touchs[0].clientX;
+    isWait = false;
+    startX = e.touches[0].clientX;
     $(".debug-console").text(e.type);
   });
 
   $(".main-screen").on("touchmove", function(e) {
-    const dx = e.touchs[0].clientX - startX;
+    if (isWait) return;
+    isWait = true;
+
+    const dx = e.touches[0].clientX - startX;
     if (dx < 0) {
       showPageIx = Math.min(showPageIx + 1, maxPageIx);
     }
