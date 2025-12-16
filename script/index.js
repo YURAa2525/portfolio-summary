@@ -26,10 +26,28 @@ function slidePage() {
   const maxPageIx  = $(".js-slide-page").length - 1;
   let   showPageIx = 0;
 
-  $(".main-screen").on("wheel", function(e) {
-    if (e.originalEvent.deltaY != 0) return;
+  // $(".main-screen").on("wheel", function(e) {
+  //   if (e.originalEvent.deltaY != 0) return;
 
-    if (0 < e.originalEvent.deltaX) {
+  //   if (0 < e.originalEvent.deltaX) {
+  //     showPageIx = Math.min(showPageIx + 1, maxPageIx);
+  //   }
+  //   else {
+  //     showPageIx = Math.max(showPageIx - 1, 0);
+  //   }
+
+  //   const moveX = $(".js-slide-page").width() * showPageIx * -1;
+  //   $(".js-pages").css("transform", `translateX(${moveX}px)`);
+  // });
+
+  let startX = 0;
+  $(".main-screen").on("touchstart", function(e) {
+    startX = e.touchs[0].clientX;
+  });
+
+  $(".main-screen").on("touchmove", function(e) {
+    const dx = e.touchs[0].clientX - startX;
+    if (dx < 0) {
       showPageIx = Math.min(showPageIx + 1, maxPageIx);
     }
     else {
