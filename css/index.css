@@ -240,17 +240,18 @@ html {
 /**** ﾀﾌﾞﾚｯﾄ → ****/
 @media screen and (min-width: 600px) {
   .header {
-    padding: 1rem;
+    /* padding: 1rem; */
   }
   .portfolio-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-
-@media screen and (max-width: 1024px) and (orientation: landscape) {
+/**** PC → ****/
+@media screen and (min-width: 1025px) {
   .header {
     width: 60%;
+    padding: 1rem;
   }
   .filter-screen {
     width: 60%;
@@ -270,9 +271,7 @@ html {
   }
 }
 
-
-/**** PC → ****/
-@media screen and (min-width: 1025px) {
+@media screen and (max-height: 600px) {
   .header {
     width: 60%;
   }
@@ -288,8 +287,17 @@ html {
     height: 100%;
   }
   .portfolio-list {
-    grid-template-columns: repeat(2, 1fr);
     width: 40%;
     height: 100%;
+  }
+}
+@media screen and (max-height: 600px) and (max-width: 799px) {
+  .portfolio-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-height: 600px) and (min-width: 800px) {
+  .portfolio-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
