@@ -39,11 +39,7 @@
       <p class="debug-console"></p>
 
       <div class="main-screen">
-        <div class="pages js-pages">
-          <section class="top-page js-slide-page"></section>
-          <section class="idea-page js-slide-page"></section>
-          <section class="pain-page js-slide-page"></section>
-        </div>
+        <div class="pages js-pages"></div>
         <div class="page-control">
           <div class="next-arrow c-btn js-arrow js-pc-show is-hide" data-arrow="left">
             <span class="next-arrow__inside"></span>
@@ -60,9 +56,9 @@
       </div>
 
       <ul class="portfolio-list">
-        <li class="portfolio-item">
-          <div class="frame">
-            <img class="thumbnail" src="../image/kawaguchi-shokudou/thumbnail.webp" loading="eager">
+        <li class="portfolio-item js-portfolio-item">
+          <div class="img-frame">
+            <img src="../image/kawaguchi-shokudou/thumbnail.webp" loading="eager">
           </div>
           <div class="info">
             <p class="title">川口食堂</p>
@@ -70,6 +66,23 @@
               <li class="tag">サイト</li>
               <li class="tag">ワンページ</li>
             </ul>
+          </div>
+          <div class="js-copy-source" style="display:none">
+            <section class="top-page js-slide-page">
+              <ul class="img-list js-img-list">
+                <li class="img-frame js-fade-in-out">
+                  <img src="../image/kawaguchi-shokudou/ix01.webp" loading="lazy">
+                </li>
+                <li class="img-frame js-fade-in-out">
+                  <img src="../image/kawaguchi-shokudou/ix02.webp" loading="lazy">
+                </li>
+                <li class="img-frame js-fade-in-out">
+                  <img src="../image/kawaguchi-shokudou/ix03.webp" loading="lazy">
+                </li>
+              </ul>
+            </section>
+            <section class="idea-page js-slide-page"></section>
+            <section class="pain-page js-slide-page"></section>
           </div>
         </li>
         <li class="portfolio-item"></li>

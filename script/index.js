@@ -7,6 +7,7 @@ $(function() {
 
   filterBtn();
   slidePage();
+  viewMainScreen();
 });
 
 
@@ -40,7 +41,7 @@ function filterBtn() {
 // > ﾓﾊﾞｲﾙ端末では横ｽｸﾛｰﾙ、pc端末では次矢印のｸﾘｯｸのみで発火する
 // ----------------------------------------------
 function slidePage() {
-  const maxPageIx   = $(".js-slide-page").length - 1;
+  const maxPageIx   = 2;
   let   showPageIx  = 0;
   let   isWait      = false;
   
@@ -91,7 +92,7 @@ function slidePage() {
   }
 
   function slidePageCore() {
-    const slideX = $(".js-slide-page").width() * showPageIx * -1;
+    const slideX = $(".js-slide-page").innerWidth() * showPageIx * -1;
     $(".js-pages").css("transform", `translateX(${slideX}px)`);
   }
 
@@ -102,5 +103,67 @@ function slidePage() {
 }
 
 
+// ----------------------------------------------
+// ｸﾘｯｸした js-portfolio-item を main-screen に描画する
+// 初期描画として、最初の js-portfolio-item を描画する
+// ----------------------------------------------
+function viewMainScreen() {
+  viewMainScreenCore($(".js-portfolio-item").eq(0));
+
+  $(".portfolio-list").on("click", ".js-portfolio-item", function() {
+    viewMainScreenCore($(this));
+  });
 
 
+  function viewMainScreenCore($el) {
+    const $clone  = $el.children(".js-copy-source").children().clone();
+    const $toCopy = $(".main-screen .js-pages");
+    $toCopy.children().remove();
+    $toCopy.append($clone);
+
+    adjustCloneCopy($toCopy);
+    setFadeInOutAnim($toCopy);
+  }
+
+
+  // --------------------------------------------
+  // ﾌｪｰﾄﾞｲﾝｱｳﾄの画像数 (js-fade-in-out) を 3枚 または 4枚 になるように複製する
+  // > 枚数に応じて後続でｾｯﾄする animation-name が変化する
+  // --------------------------------------------
+  function adjustCloneCopy($pages) {
+    const $slide       = $pages.find(".js-fade-in-out");
+    let   adjustSlides = 0;
+    
+    if ($slide.length == 1) adjustSlides = 3;
+    if ($slide.length == 2) adjustSlides = 4;
+
+    if (adjustSlides == 0) return;
+
+    const $slideClone  = $slide.clone();
+    const $slideParent = $slide.parent(".js-img-list");
+
+    for (let _ = 1; _ < adjustSlides; _++) {
+      $slideParent.append($slideClone);
+    }
+  }
+
+
+  // --------------------------------------------
+  // ﾌｪｰﾄﾞｲﾝｱｳﾄの画像数 (js-fade-in-out) に応じて、animation ﾌﾟﾛﾊﾟﾃｨをセットする
+  // --------------------------------------------
+  function setFadeInOutAnim($pages) {
+    const k      = 5;
+    const $slide = $pages.find(".js-fade-in-out");
+    const cnt    = $slide.length;
+
+    let name = "fade-in-out-3th";
+    if (cnt == 4) name = "fade-in-out-4th";
+
+    $slide.each(function(ix) {
+      $(this).css({
+        "z-index"  : cnt - ix,
+        "animation": `${name} ${k * cnt}s linear ${k * ix}s infinite none`,
+      });
+    });
+  }
+}
