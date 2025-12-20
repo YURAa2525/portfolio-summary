@@ -4,7 +4,10 @@ let g_showPageIx = 0;
 $(function() {
   if (window.matchMedia("(pointer: coarse)").matches) g_userDevice = "mobile";
 
-  if (g_userDevice == "pc") $(".js-pc-show").removeClass("is-hide");
+  if (g_userDevice == "pc") {
+    $(".js-pc-show").removeClass("is-hide");
+    $(".js-portfolio-title").addClass("pc-shadow");
+  }
 
   filterBtn();
   slidePageManage();
