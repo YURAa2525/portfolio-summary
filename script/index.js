@@ -67,6 +67,7 @@ function slidePage() {
 
       slidePageCore();
       vividDot();
+      growUnderLine();
     });
   }
   else if (g_userDevice == "pc") {
@@ -84,6 +85,7 @@ function slidePage() {
 
       slidePageCore();
       vividDot();
+      growUnderLine();
 
       setTimeout(() => {
         isWait = false;
@@ -99,6 +101,13 @@ function slidePage() {
   function vividDot() {
     $(".js-dot").removeClass("is-vivid");
     $(".js-dot").eq(showPageIx).addClass("is-vivid");
+  }
+
+  // js-section-title の下線を描画するｱﾆﾒｰｼｮﾝｸﾗｽを追加/削除
+  function growUnderLine() {
+    $(".main-screen .js-section-title").removeClass("is-grow");
+    if (showPageIx == 0) return;
+    $(".main-screen .js-slide-page").eq(showPageIx).find(".js-section-title").addClass("is-grow");
   }
 }
 
@@ -121,8 +130,15 @@ function viewMainScreen() {
     $toCopy.children().remove();
     $toCopy.append($clone);
 
+    setPortfolioTitle($el);
     adjustCloneCopy($toCopy);
     setFadeInOutAnim($toCopy);
+  }
+
+
+  function setPortfolioTitle($portfolioItem) {
+    const title = $portfolioItem.find(".js-title").text();
+    $(".js-portfolio-title").text(title);
   }
 
 
