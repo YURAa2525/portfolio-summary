@@ -29,8 +29,6 @@ function filterBtn() {
     setTimeout(() => {
       isWait = false;
     }, 200);
-
-    $(".debug-console").text(e.type);
   });
 }
 
@@ -131,14 +129,27 @@ function viewMainScreen() {
     $toCopy.append($clone);
 
     setPortfolioTitle($el);
+    setPortfolioURL($el);
     adjustCloneCopy($toCopy);
     setFadeInOutAnim($toCopy);
   }
 
 
+  // --------------------------------------------
+  // ｸﾘｯｸした js-portfolio-item に紐づく作品名 (js-title) を js-portfolio-title に表示する
+  // --------------------------------------------
   function setPortfolioTitle($portfolioItem) {
     const title = $portfolioItem.find(".js-title").text();
     $(".js-portfolio-title").text(title);
+  }
+
+
+  // --------------------------------------------
+  // ｸﾘｯｸした js-portfolio-item に紐づく URL を js-view-btn のﾘﾝｸ先に設定する
+  // --------------------------------------------
+  function setPortfolioURL($portfolioItem) {
+    const url = $portfolioItem.data("url");
+    $(".js-view-btn").attr("href", url);
   }
 
 

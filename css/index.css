@@ -1,12 +1,3 @@
-.debug-console {
-  z-index: 10;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-}
-
 @font-face {
   font-family: "aqua";
   src        : url("../font/aquafont.ttf") format("truetype");
@@ -16,12 +7,18 @@
   src        : url("../font/YDWbananaslipplus.otf") format("opentype");
 }
 
+:root {
+  --color-main-bg   : #333333;
+  --color-main-text : #F0F0F0;
+}
+
 html {
   font-family : "aqua", sans-serif;
   /* ↓ ｳｲﾝﾄﾞｳ幅375px:14px ~ ｳｲﾝﾄﾞｳ幅1025px:16px の範囲で変化 */
   font-size   : clamp(14px, calc(14px + (100vw - 375px) * (2 / 650)), 16px);
   font-weight : bold;
-  color       : #333333;
+  color       : var(--color-main-text);
+  background-color: var(--color-main-bg);
 }
 img {
   width     : 100%;
@@ -52,6 +49,9 @@ img {
 }
 .filter-btn.c-btn {
   z-index: 2
+}
+.view-btn {
+  display: block;
 }
 .portfolio-title {
   z-index : 0;
@@ -255,7 +255,7 @@ img {
   border    : solid 1px black;
 }
 .page.top {
-  background-color: tomato;
+  /* background-color: tomato; */
 }
 .page.top .img-frame {
   position  : absolute;
@@ -314,10 +314,10 @@ img {
   }
 }
 .page.idea {
-  background-color: aqua;
+  /* background-color: #8FD7EA; */
 }
 .page.pain {
-  background-color: violet;
+  /* background-color: #6CD0EA; */
 }
 .page.idea .wrapper,
 .page.pain .wrapper {
