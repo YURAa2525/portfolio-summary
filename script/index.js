@@ -54,18 +54,25 @@ function slidePageManage() {
   let   isWait      = false;
   
   if (g_userDevice == "mobile") {
-    let   touchstartX = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
 
     $(".main-screen").on("touchstart", function(e) {
       isWait = false;
-      touchstartX = e.touches[0].clientX;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
     });
 
     $(".main-screen").on("touchmove", function(e) {
       if (isWait) return;
       isWait = true;
 
-      const dx = e.touches[0].clientX - touchstartX;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+
+      // 横ｽｸﾛｰﾙ量 < 縦ｽｸﾛｰﾙ量 の場合は、縦ｽｸﾛｰﾙとみなし処理しない
+      if (Math.abs(dx) < Math.abs(dy)) return;
+
       if (dx < 0) {
         g_showPageIx = Math.min(g_showPageIx + 1, maxPageIx);
       }

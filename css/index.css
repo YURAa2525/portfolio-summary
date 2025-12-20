@@ -81,7 +81,7 @@ img {
   font-size     : 1.6rem;
   font-weight   : bold;
   letter-spacing: 0.5em;
-  text-shadow   : 2px 2px 0 rgba(52, 52, 52, 0.4);
+  text-shadow   : 2px 2px 0 rgba(52, 52, 52, 0.2);
   transform     : translate(-50%, -50%);
 }
 .filter-screen {
