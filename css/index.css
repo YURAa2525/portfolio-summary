@@ -16,7 +16,8 @@
   --color-screen-bg     : #333333;
   --color-screen-border : #29CCCC;
 
-  --color-pagenation-dot: #F0F0F0;
+  --color-pagenation-dot      : #666666;
+  --color-pagenation-dot-vivid: #F0F0F0;
   
   --color-next-arrow: #F0F0F0;
   
@@ -25,7 +26,7 @@
   --color-list-tag-bg   : var(--color-main-text);
   --color-list-tag-text : var(--color-screen-bg);
 
-  --color-section-title-underline: var(--color-screen-border);
+  --color-section-title-underline: var(--color-list-bg);
 }
 
 html {
@@ -109,7 +110,7 @@ img {
   position: relative;
   overflow: hidden;
   width   : 100%;
-  height  : 40%;
+  height  : 50%;
 }
 .pages {
   z-index   : 0;
@@ -140,11 +141,10 @@ img {
   width     : 0.5rem;
   border-radius   : 100%;
   background-color: var(--color-pagenation-dot);
-  opacity   : 0.2;
-  transition: opacity 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 .pagenation__dot.is-vivid {
-  opacity: 0.5;
+  background-color: var(--color-pagenation-dot-vivid);
 }
 .next-arrow {
   overflow: hidden;
@@ -213,7 +213,7 @@ img {
   grid-template-columns: repeat(2, 1fr);
   overflow-y: scroll;
   width     : 100%;
-  height    : 60%;
+  height    : 50%;
   padding   : 2vw;
   gap       : 2vw;
   background-color: var(--color-list-bg);
