@@ -1,4 +1,5 @@
 let g_userDevice = "pc";
+let g_showPageIx = 0;
 
 $(function() {
   if (window.matchMedia("(pointer: coarse)").matches) g_userDevice = "mobile";
@@ -6,8 +7,18 @@ $(function() {
   if (g_userDevice == "pc") $(".js-pc-show").removeClass("is-hide");
 
   filterBtn();
-  slidePage();
+  slidePageManage();
   viewMainScreen();
+
+
+  // ﾘｻｲｽﾞ毎の処理 (setTimeout によって 100ms ごとに処理)
+  let timer;
+  $(window).on("resize", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (g_showPageIx != 0) slidePage();
+    }, 100);
+  });
 });
 
 
@@ -38,9 +49,8 @@ function filterBtn() {
 // また、表示中の js-slide-page に伴う、js-dot を強調表示する
 // > ﾓﾊﾞｲﾙ端末では横ｽｸﾛｰﾙ、pc端末では次矢印のｸﾘｯｸのみで発火する
 // ----------------------------------------------
-function slidePage() {
+function slidePageManage() {
   const maxPageIx   = 2;
-  let   showPageIx  = 0;
   let   isWait      = false;
   
   if (g_userDevice == "mobile") {
@@ -57,13 +67,13 @@ function slidePage() {
 
       const dx = e.touches[0].clientX - touchstartX;
       if (dx < 0) {
-        showPageIx = Math.min(showPageIx + 1, maxPageIx);
+        g_showPageIx = Math.min(g_showPageIx + 1, maxPageIx);
       }
       else {
-        showPageIx = Math.max(showPageIx - 1, 0);
+        g_showPageIx = Math.max(g_showPageIx - 1, 0);
       }
 
-      slidePageCore();
+      slidePage();
       vividDot();
       growUnderLine();
     });
@@ -75,13 +85,13 @@ function slidePage() {
 
       const arrow = $(this).data("arrow");
       if (arrow == "right") {
-        showPageIx = Math.min(showPageIx + 1, maxPageIx);
+        g_showPageIx = Math.min(g_showPageIx + 1, maxPageIx);
       }
       else if (arrow == "left") {
-        showPageIx = Math.max(showPageIx - 1, 0);
+        g_showPageIx = Math.max(g_showPageIx - 1, 0);
       }
 
-      slidePageCore();
+      slidePage();
       vividDot();
       growUnderLine();
 
@@ -91,22 +101,28 @@ function slidePage() {
     });
   }
 
-  function slidePageCore() {
-    const slideX = $(".js-slide-page").innerWidth() * showPageIx * -1;
-    $(".js-pages").css("transform", `translateX(${slideX}px)`);
-  }
-
+  // 表示中の js-slide-page に応じて、ﾍﾟｰｼﾞﾈｰｼｮﾝの js-dot を強調表示する
   function vividDot() {
     $(".js-dot").removeClass("is-vivid");
-    $(".js-dot").eq(showPageIx).addClass("is-vivid");
+    $(".js-dot").eq(g_showPageIx).addClass("is-vivid");
   }
 
-  // js-section-title の下線を描画するｱﾆﾒｰｼｮﾝｸﾗｽを追加/削除
+  // js-section-title の下線を描画するｱﾆﾒｰｼｮﾝｸﾗｽを追加/削除する
   function growUnderLine() {
     $(".main-screen .js-section-title").removeClass("is-grow");
-    if (showPageIx == 0) return;
-    $(".main-screen .js-slide-page").eq(showPageIx).find(".js-section-title").addClass("is-grow");
+    if (g_showPageIx == 0) return;
+    $(".main-screen .js-slide-page").eq(g_showPageIx).find(".js-section-title").addClass("is-grow");
   }
+}
+
+
+// ----------------------------------------------
+// 処理時点の js-slide-page の横幅に応じて js-pages の translateX をずらす
+// > slidePageManage() と、ｳｲﾝﾄﾞｳﾘｻｲｽﾞ時から呼ばれる
+// ----------------------------------------------
+function slidePage() {
+  const slideX = $(".main-screen .js-slide-page").innerWidth() * g_showPageIx * -1;
+    $(".js-pages").css("transform", `translateX(${slideX}px)`);
 }
 
 
